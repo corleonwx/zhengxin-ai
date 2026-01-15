@@ -5,8 +5,8 @@
 
 cd ~/zhengxin-ai || exit 1
 
-# 检查是否有更改
-if git diff --quiet && git diff --cached --quiet; then
+# 检查是否有更改（包括未跟踪文件）
+if git diff --quiet && git diff --cached --quiet && [ -z "$(git ls-files --others --exclude-standard)" ]; then
     echo "没有新更改需要上传"
     exit 0
 fi
